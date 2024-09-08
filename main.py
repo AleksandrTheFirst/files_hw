@@ -16,21 +16,23 @@ with open('recipes.txt', encoding='utf-8') as file:
         file.readline()
         cook_book[recipe_name] = ingredients
 
+
+# Задача 2
 def get_shop_list_by_dishes(dishes, person_count):
     result_dict = {}
-    for dish in dishes:         # идем по списку dishes
-        if dish in cook_book:   # если блюдо есть в cook_book
-            for one_list in cook_book[dish]:        # идем по списку ингредиентов блюда
-                if one_list['name'] in result_dict:      # если ингредиент уже в итоговом списке
-                    result_dict[one_list['name']]['quantity'] += int(one_list['quantity']) * person_count  #обновляем значение количества
-                else:  # иначе записываем имя ингредиента со списком = ед.изм. * кол-во персон
+    for dish in dishes:
+        if dish in cook_book:
+            for one_list in cook_book[dish]:
+                if one_list['name'] in result_dict:
+                    result_dict[one_list['name']]['quantity'] += int(one_list['quantity']) * person_count
+                else:
                     result_dict[one_list['name']] = {'measure': one_list['measure'],'quantity': (int(one_list['quantity']) * person_count) }
         else:
             print('Такого блюда нет в меню')
     print(result_dict)
 
 
-# Задача 2
+# Задача 3
 def create_file_from_files(files: list):
     if not isinstance(files, list):
         raise ValueError('Путь должен быть задан списком.')
@@ -57,8 +59,6 @@ def create_file_from_files(files: list):
     file_w.close()
     file_w.close()
 
-
-# Задача 3
 def create_sorted_dict(files):
     tmp_dict = {}
     for file_ in sorted(files):
